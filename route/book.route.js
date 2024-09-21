@@ -1,12 +1,15 @@
 import express from 'express'
 import { getBooks,createBook,getBook,updateBook,deleteBook } from '../controller/book.controller.js'
 import Book from '../model/book.model.js'
+import { verifyToken } from '../middleware/authmiddleware.js'
 
 
 const router=express.Router()
 
 // get all books
 router.get('/',getBooks)
+
+router.use(verifyToken)
 // Create a new book
 router.post('/', createBook);
 
